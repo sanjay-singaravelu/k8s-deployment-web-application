@@ -1,0 +1,27 @@
+apiVersion: apps/v1 # Specifies the API version
+kind: Deployment # Specifies the kind of resource to create 
+metadata: # Metadata of the deployment
+  name: k8s-web-application # Name of the deployment
+  namespace: default # Namespace of the deployment
+spec: # Specification of the deployment
+  replicas: 3 # Number of replicas to create
+  selector: # Selector to match the pods
+    matchLabels: # Labels to match the pods
+      app: k8s-web-application # Label of the deployment
+  template: # Template of the deployment
+    metadata: # Metadata of the template
+      labels: # Labels of the template
+        app: k8s-web-application # Label of the deployment
+    spec: # Specification of the template
+      containers: # Containers to run in the pod
+      - name: k8s-web-application # Name of the container
+        image: sanjayvelu14/k8s-web-application:latest # Image of the container
+        ports: # Ports to expose
+        - containerPort: 3008 # Port of the container
+        resources:
+          requests:
+            cpu: "250m"        # CPU request
+            memory: "64Mi"     # Memory request
+          limits:
+            cpu: "500m"        # CPU limit
+            memory: "128Mi"    # Memory limit
